@@ -27,10 +27,10 @@ unsafe extern "system" fn mouse_proc(n_code: i32, w_param: WPARAM, l_param: LPAR
         let button_id = match w_param as u32 {
             WM_LBUTTONDOWN | WM_LBUTTONUP => Some(1),
             WM_RBUTTONDOWN | WM_RBUTTONUP => Some(2),
-            WM_MBUTTONDOWN | WM_MBUTTONUP => Some(3),
+            WM_MBUTTONDOWN | WM_MBUTTONUP => Some(4),
             WM_XBUTTONDOWN | WM_XBUTTONUP => {
                 let button_id = (mouse_data.mouseData >> 16) & 0xFFFF;
-                Some((button_id + 3) as u32)
+                Some(button_id + 3)
             }
             _ => None,
         };
